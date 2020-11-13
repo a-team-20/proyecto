@@ -1,0 +1,36 @@
+{# comentario #}
+{# La primera linea no comentario debe ser la herencia #}
+{% extends "plantillaBase.html" %}
+
+{# definir los bloques y su contenido #}
+
+{% block titulo %}
+	<h1>Enviar Email</h1>
+{% endblock %}
+
+{% block contenido %}
+{# muestra los valores #}
+
+<form action="{% url 'mail' %}" method="post">
+	{% csrf_token %} 
+	
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-2">
+			Nombre
+		</div>
+		<div class="col-12 col-sm-6">
+			<input type="text" name="txtNombre" class="form-control" value="{{ item.nombre }}">
+		</div>
+	</div>
+	
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-2">
+			Opciones
+		</div>
+		<div class="col-12 col-sm-6">
+			<input type="submit" name="btnEnviar" class="btn btn-success" value="Enviar">
+
+		</div>
+	</div>
+</form>
+{% endblock %}

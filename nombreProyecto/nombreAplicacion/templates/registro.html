@@ -1,0 +1,46 @@
+{% extends "plantillaBase2.html" %}
+{% block titulo %}
+	{{ 'Registro de Usuarios'}}
+{% endblock %}
+{% block titulo2 %}
+	{{ 'Registro de Usuarios'}}
+{% endblock %}
+{% block contenido %}
+	<form action="{% url 'registro' %}" method="post">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-12 col-sm-3">
+				Nombre 
+			</div>
+			<div class="col-12 col-sm-3">
+				<input type="text" name="txtNombre" class="txtNombre form-control">
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-12 col-sm-3">
+				Correo
+			</div>
+			<div class="col-12 col-sm-3">
+				<input type="text" name="txtCorreo" class="txtCorreo form-control">
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-12 col-sm-3">
+				Clave
+			</div>
+			<div class="col-12 col-sm-3">
+				<input type="password" name="txtClave" class="txtClave form-control">
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-12 col-sm-3">
+				Opciones
+			</div>
+			<div class="col-12 col-sm-3">
+				<input type="submit" name="btnAceptar" class="btn btn-primary">
+			</div>			
+		</div>
+	</form>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+{# comentario #}
+{# La primera linea no comentario debe ser la herencia #}
+{% extends "plantillaBase.html" %}
+
+{# definir los bloques y su contenido #}
+
+{% block titulo %}
+	<h1>Ajax test</h1>
+{% endblock %}
+
+{% block contenido %}
+<form method="post">
+	{% csrf_token %} 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script>
+		$(function(){
+			$(".boton").click(function()
+			{
+				$.post( "/ajaxTest", 
+						$('form').serialize(),
+					function(data) {
+						//alert( "success" );
+						
+						//$( ".result" ).html( data[0]["nombre"] + " " + data[0]["activo"]);
+						
+						for(registro in data)
+						{
+							$( ".result" ).append( data[registro]["nombre"] + '<br>');
+						}
+											
+					})
+					.fail(function() {
+						alert( "error" );
+					})
+				return false;
+			});
+		});
+	</script>
+	<button class="btn btn-primary boton">aceptar</button>
+	<div class="result"></div>
+</form> 
+{% endblock %}
+

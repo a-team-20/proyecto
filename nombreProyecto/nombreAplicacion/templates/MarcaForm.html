@@ -1,0 +1,87 @@
+{# comentario #}
+{# La primera linea no comentario debe ser la herencia #}
+{% extends "plantillaBase.html" %}
+
+{# definir los bloques y su contenido #}
+
+{% block titulo %}
+	<h1>Registro de Marca</h1>
+{% endblock %}
+
+{% block contenido %}
+{# muestra los valores #}
+{{ mensaje }}
+{{form}}
+<br>
+<form action="{% url 'marcaForm' %}" method="post">
+	{% csrf_token %} 
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-2">
+			Id
+		</div>
+		<div class="col-8 col-sm-4">
+			{{ form.id }}
+		</div>
+		<div class="col-4 col-sm-2">
+			<input type="submit" name="btnBuscar" class="btn btn-success btn-block" value="Buscar">
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-2">
+			Nombre
+		</div>
+		<div class="col-12 col-sm-6">
+			{{ form.nombre }}
+
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-2">
+			Activo
+		</div>
+		<div class="col-12 col-sm-6">
+			{{ form.activo }}
+			
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-2">
+			Opciones
+		</div>
+		<div class="col-12 col-sm-6">
+			<input type="submit" name="btnGrabar" class="btn btn-success" value="Grabar">
+			<input type="submit" name="btnListar" class="btn btn-success" value="Listar">
+{% if item.id > 0 %}			
+			<input type="submit" name="btnEliminar" class="btn btn-danger float-right" value="Eliminar">
+{% endif %}
+		</div>
+	</div>
+</form>
+{% endblock %}
+
+{% block listado %}
+{% if lista %}
+	<div class="row justify-content-center">
+		<div>
+			<div class="table-responsive">
+				<table class="table">
+					<thead class="table-active">
+						<th>#</th>
+						<th>Nombre</th>
+						<th>Activo</th>
+					</thead>
+					<tbody>
+{% for fila in lista %}
+						<tr>
+							<td>{{ fila.id }}</td>
+							<td>{{ fila.nombre }}</td>
+							<td>{{ fila.activo }}</td>
+						</tr>
+{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endif %}
+{% endblock %}
